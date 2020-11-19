@@ -1,0 +1,18 @@
+body {
+  background-color: #007bff;
+}
+
+.wrapper {
+  height: 100vh;
+}
+
+.box {
+  background-color: #fff;
+}
+
+.fa-quote-left {
+  position: absolute;
+  opacity: 0.5;
+  top: 10px;
+  left: 10px;
+}
