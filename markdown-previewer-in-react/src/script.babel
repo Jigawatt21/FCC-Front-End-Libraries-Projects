@@ -1,0 +1,73 @@
+
+class MarkDownPreview extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    this.state ={
+      input: placeHolder,
+      output: '',
+      autocompile: false
+    }
+    
+    this.handleChange = this.handleChange.bind(this);
+  }
+  
+handleChange(e) {
+    this.setState({
+      input: e.target.value,
+    });
+  }
+  
+  render() {
+    return (
+     <div id="app-wrapper" class="row">
+     <Editor value={this.state.input} onChange={this.handleChange} class="row-sm-6"/>
+     <Preview text={this.state.input} class="row-sm-6" />
+     </div>
+    );
+  }
+}
+
+const Editor = (props) => {
+  return (
+    <div id="Editor-container">
+      <h1>Markdown Editor</h1>
+      <textarea id="editor" type="text" placeholder={placeHolder} value={props.input} onChange={props.onChange} />
+    </div>
+  );
+}
+const Preview = (props) => {
+  return (
+    <div id="preview-container">
+      <h1>Preview</h1>
+      <div id="preview-text">
+        <div dangerouslySetInnerHTML={{ __html:  props.text }} />
+      </div>
+    </div>
+  
+  );
+  
+}
+const placeHolder = `
+<h1>This text is H1 sized!</h1>
+  <hr>
+<h2>This text is H2 sized!</h2>
+  <hr>
+<h3>This text is H3 sized!</h3>
+  <hr>
+<ul><strong>Here is an unordered list!</strong>
+  <li>Here is my first list item</li>
+  <li>Here is my second List Item</li>
+</ul>
+  <hr>
+<ol><strong>Here is an ordered list!</strong>
+  <li>List Item #1</li>
+  <li>List Item #2</li>
+</ol>
+  <hr>
+<p> You can also make text <strong>BOLD!</strong></p>
+<p>Or even <em>emphasized</em></p>`;
+
+
+
+ReactDOM.render(<MarkDownPreview />, document.getElementById("app"))
